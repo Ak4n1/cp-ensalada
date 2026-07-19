@@ -19,9 +19,9 @@
   --cp-danger: #ff8f70;
   --cp-font-title: "Marcellus SC", Georgia, serif;
   --cp-font-ui: "Rajdhani", "Segoe UI", sans-serif;
-  --cp-mask-panel: url('assets/images/app/masks/squares/terra-rough-panel.svg');
-  --cp-mask-button: url('assets/images/app/masks/stains/terra-button.svg');
-  --cp-mask-swipe: url('assets/images/app/masks/stains/terra-swipe.svg');
+  --cp-mask-panel: url('/cp-ensalada/assets/images/app/masks/squares/terra-rough-panel.svg');
+  --cp-mask-button: url('/cp-ensalada/assets/images/app/masks/stains/terra-button.svg');
+  --cp-mask-swipe: url('/cp-ensalada/assets/images/app/masks/stains/terra-swipe.svg');
 }
 
 * {
