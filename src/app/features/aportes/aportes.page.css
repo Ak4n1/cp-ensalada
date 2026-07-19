@@ -1,0 +1,77 @@
+.page {
+  display: grid;
+  gap: 18px;
+}
+
+.search-card {
+  background: linear-gradient(135deg, rgba(216, 162, 74, 0.18), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(216, 162, 74, 0.22);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.intro {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.intro p {
+  color: #d8a24a;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.intro h1 {
+  color: #fff0c7;
+  font-family: var(--cp-font-title);
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1;
+  margin: 0;
+}
+
+.intro small {
+  color: #bca987;
+}
+
+label {
+  color: #cdb58d;
+  display: grid;
+  font-size: 12px;
+  font-weight: 900;
+  gap: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.search-row {
+  position: relative;
+}
+
+input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(216, 162, 74, 0.3);
+  border-radius: 10px;
+  color: #fff0c7;
+  min-height: 48px;
+  padding: 0 44px 0 14px;
+  width: 100%;
+}
+
+button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(216, 162, 74, 0.3);
+  border-radius: 999px;
+  color: #ffe2a0;
+  cursor: pointer;
+  font-size: 24px;
+  height: 30px;
+  line-height: 20px;
+  position: absolute;
+  right: 9px;
+  top: 9px;
+  width: 30px;
+}

@@ -1,0 +1,28 @@
+<section class="page">
+  <div class="search-card">
+    <div class="intro">
+      <p>Seguimiento de aportes</p>
+      <h1>Aportes por personaje</h1>
+      <small>
+        Esta sección muestra quién cargó materiales y cuánto aportó cada uno. No representa el
+        stock total real de la CP.
+      </small>
+    </div>
+
+    <label>
+      Buscar aporte
+      <div class="search-row">
+        <input
+          name="searchText"
+          [(ngModel)]="searchText"
+          placeholder="Ej: Iron Ore, Thread, VELYNN..."
+        />
+        @if (searchText) {
+          <button type="button" (click)="clearSearch()">x</button>
+        }
+      </div>
+    </label>
+  </div>
+
+  <app-contributions-table [searchText]="searchText" />
+</section>

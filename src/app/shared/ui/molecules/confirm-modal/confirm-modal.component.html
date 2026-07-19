@@ -1,0 +1,25 @@
+<div class="overlay" (click)="cancelled.emit()">
+  <section class="modal" (click)="$event.stopPropagation()">
+    <p>{{ eyebrow }}</p>
+    <h2>{{ title }}</h2>
+    <span>{{ message }}</span>
+
+    <div class="actions">
+      <button class="cancel" type="button" [disabled]="loading" (click)="cancelled.emit()">
+        {{ cancelText }}
+      </button>
+      <button
+        class="confirm"
+        type="button"
+        [class.danger]="danger"
+        [disabled]="loading"
+        (click)="confirmed.emit()"
+      >
+        @if (loading) {
+          <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+        }
+        {{ confirmText }}
+      </button>
+    </div>
+  </section>
+</div>

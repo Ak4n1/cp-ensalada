@@ -1,0 +1,48 @@
+<div class="picker">
+  <button class="selected" type="button" (click)="open()">
+    @if (selectedParticipant; as participant) {
+      <img [src]="avatarPath(participant.avatar)" [alt]="participant.name" />
+      <span>{{ participant.name }}</span>
+      <small [class.inactive]="!participant.active">
+        {{ participant.active ? 'Activo' : 'Inactivo' }}
+      </small>
+    } @else {
+      <span>Elegir personaje</span>
+    }
+  </button>
+
+  <div class="search-row">
+    <input
+      type="text"
+      [value]="searchText"
+      (input)="onSearch($any($event.target).value)"
+      (focus)="open()"
+      placeholder="Buscar personaje..."
+    />
+    @if (searchText) {
+      <button class="clear" type="button" (click)="clearSearch($event)">×</button>
+    }
+  </div>
+
+  @if (isOpen) {
+    <div class="panel">
+      <p class="hint">Personajes de la CP</p>
+      @for (participant of visibleParticipants; track participant.id) {
+        <button
+          class="option"
+          type="button"
+          [class.disabled]="!participant.active"
+          (click)="select(participant)"
+        >
+          <img [src]="avatarPath(participant.avatar)" [alt]="participant.name" />
+          <span>{{ participant.name }}</span>
+          <small [class.inactive]="!participant.active">
+            {{ participant.active ? 'Activo' : 'Inactivo' }}
+          </small>
+        </button>
+      } @empty {
+        <p class="empty">No encontre ese personaje.</p>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,131 @@
+.table-card {
+  background: rgba(17, 13, 9, 0.78);
+  border: 1px solid rgba(216, 162, 74, 0.22);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.heading {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  justify-content: space-between;
+  padding: 22px 22px 8px;
+}
+
+.eyebrow {
+  color: #d8a24a;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: var(--cp-font-title);
+  font-size: 30px;
+  margin: 0;
+}
+
+.export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.export-action {
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  gap: 7px;
+}
+
+.export-action.pdf {
+  background: rgba(185, 42, 42, 0.12);
+  color: #ffb3a6;
+}
+
+.export-action.pdf:hover {
+  background: rgba(220, 58, 58, 0.2);
+  color: #ffd4ca;
+}
+
+.export-action.excel {
+  background: rgba(56, 135, 73, 0.16);
+  color: #adf2bc;
+}
+
+.export-action.excel:hover {
+  background: rgba(69, 173, 91, 0.24);
+  color: #d4ffdc;
+}
+
+.export-action.general {
+  font-size: 13px;
+  font-weight: 900;
+  padding: 9px 12px;
+  white-space: nowrap;
+}
+
+.export-action.icon {
+  height: 28px;
+  justify-content: center;
+  padding: 0;
+  width: 28px;
+}
+
+.participant-head {
+  align-items: center;
+  display: inline-flex;
+  gap: 7px;
+  justify-content: center;
+}
+
+.table-wrap {
+  overflow: auto;
+}
+
+table {
+  border-collapse: collapse;
+  min-width: 860px;
+  width: 100%;
+}
+
+th,
+td {
+  border-top: 1px solid rgba(216, 162, 74, 0.14);
+  padding: 12px 14px;
+  text-align: center;
+}
+
+th {
+  color: #d8a24a;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.material {
+  align-items: center;
+  color: #ffe2a0;
+  display: flex;
+  gap: 10px;
+  position: sticky;
+  left: 0;
+  text-align: left;
+}
+
+.total {
+  color: #ffd987;
+  font-weight: 900;
+}
+
+.empty {
+  color: #bca987;
+  margin: 0;
+  padding: 22px;
+}

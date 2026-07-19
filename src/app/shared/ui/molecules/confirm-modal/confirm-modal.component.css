@@ -1,0 +1,81 @@
+.overlay {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(8px);
+  display: flex;
+  inset: 0;
+  padding: 22px;
+  position: fixed;
+  z-index: 50;
+}
+
+.modal {
+  background:
+    radial-gradient(circle at top right, rgba(159, 203, 69, 0.12), transparent 20rem),
+    linear-gradient(145deg, #0f0f0f, #030303);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.72), 0 0 52px rgba(159, 203, 69, 0.12);
+  display: grid;
+  gap: 14px;
+  margin: auto;
+  max-width: 520px;
+  padding: 28px;
+  width: min(520px, 100%);
+}
+
+p {
+  color: var(--cp-green-hot);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: #fff !important;
+  font-family: var(--cp-font-title);
+  font-size: 30px;
+  margin: 0;
+}
+
+span {
+  color: var(--cp-muted);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+button {
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 900;
+  min-height: 42px;
+  outline: none;
+  padding: 10px 14px;
+  text-transform: uppercase;
+}
+
+button:focus,
+button:focus-visible {
+  box-shadow: 0 0 0 2px rgba(201, 255, 90, 0.24);
+}
+
+.cancel {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.confirm {
+  background: linear-gradient(180deg, rgba(201, 255, 90, 0.95), rgba(105, 138, 35, 0.96));
+  color: #101704;
+}
+
+.confirm.danger {
+  background: linear-gradient(180deg, #b92828, #5a0f0f);
+  color: #fff;
+}

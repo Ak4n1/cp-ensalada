@@ -1,0 +1,72 @@
+<section class="table-card">
+  <div class="heading">
+    <div>
+      <p class="eyebrow">Resumen</p>
+      <h2>Stock actual</h2>
+    </div>
+    <div class="export-actions">
+      <button class="export-action pdf general" type="button" (click)="downloadGeneralPdf()">
+        <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+        PDF general
+      </button>
+      <button class="export-action excel general" type="button" (click)="downloadGeneralExcel()">
+        <i class="fa-solid fa-file-excel" aria-hidden="true"></i>
+        Excel general
+      </button>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    @if (materialsWithStock().length > 0) {
+      <table>
+        <thead>
+          <tr>
+            <th>Material</th>
+            @for (participant of data.participants(); track participant.id) {
+              <th>
+                <span class="participant-head">
+                  {{ participant.name }}
+                  <button
+                    class="export-action pdf icon"
+                    type="button"
+                    title="Descargar PDF de {{ participant.name }}"
+                    (click)="downloadParticipantPdf(participant.id)"
+                  >
+                    <i class="fa-solid fa-file-pdf" aria-hidden="true"></i>
+                  </button>
+                  <button
+                    class="export-action excel icon"
+                    type="button"
+                    title="Descargar Excel de {{ participant.name }}"
+                    (click)="downloadParticipantExcel(participant.id)"
+                  >
+                    <i class="fa-solid fa-file-excel" aria-hidden="true"></i>
+                  </button>
+                </span>
+              </th>
+            }
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (material of materialsWithStock(); track material.id) {
+            <tr>
+              <td class="material">
+                <app-item-icon [icon]="material.icon" [alt]="material.name" />
+                <span>{{ material.name }}</span>
+              </td>
+              @for (participant of data.participants(); track participant.id) {
+                <td>{{ data.totalFor(material.id, participant.id) }}</td>
+              }
+              <td class="total">{{ data.totalFor(material.id) }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <p class="empty">
+        {{ searchText ? 'No hay stock que coincida con la busqueda.' : 'Todavia no hay stock cargado.' }}
+      </p>
+    }
+  </div>
+</section>

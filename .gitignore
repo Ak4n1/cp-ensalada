@@ -8,6 +8,7 @@
 
 # Node
 /node_modules
+**/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -31,6 +32,9 @@ yarn-error.log
 
 # Miscellaneous
 /.angular/cache
+.env*
+!.env.example
+!**/.env.example
 .sass-cache/
 /connect.lock
 /coverage
@@ -38,7 +42,10 @@ yarn-error.log
 testem.log
 /typings
 __screenshots__/
+.playwright-cli/
+.tmp-pepper
 
 # System files
 .DS_Store
 Thumbs.db
+.vercel

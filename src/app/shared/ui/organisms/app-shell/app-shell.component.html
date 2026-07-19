@@ -1,0 +1,34 @@
+<div class="shell">
+  <aside>
+    <div>
+      <p class="crest">CP</p>
+      <h1>Ensalada</h1>
+      <p class="muted">Aportes, materiales y cuentas claras.</p>
+    </div>
+
+    <nav>
+      <a routerLink="/aportes" routerLinkActive="active">Aportes</a>
+      <a routerLink="/cargar" routerLinkActive="active">Cargar</a>
+      <a routerLink="/historial" routerLinkActive="active">Historial</a>
+      <a routerLink="/participantes" routerLinkActive="active">Participantes</a>
+      <a routerLink="/materiales" routerLinkActive="active">Materiales</a>
+    </nav>
+
+    <button class="logout-action" type="button" (click)="auth.logout()">
+      <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+      Salir
+    </button>
+  </aside>
+
+  <section class="content">
+    <header>
+      <app-stat-pill label="Participantes" [value]="data.participants().length.toString()" />
+      <app-stat-pill label="Materiales" [value]="data.materials().length.toString()" />
+      <app-stat-pill label="Total cargado" [value]="data.grandTotal().toString()" />
+    </header>
+
+    <main>
+      <ng-content />
+    </main>
+  </section>
+</div>

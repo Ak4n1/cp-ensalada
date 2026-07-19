@@ -1,0 +1,71 @@
+<section class="page">
+  <div class="card">
+    <p class="eyebrow">Roster</p>
+    <h2>Agregar participante</h2>
+    <form (ngSubmit)="add()">
+      <input name="name" [(ngModel)]="name" placeholder="Nombre del personaje" />
+      <app-avatar-picker [(selectedAvatar)]="avatar" />
+      <app-button type="submit">Agregar</app-button>
+    </form>
+  </div>
+
+  <div class="list">
+    @for (participant of data.participants(); track participant.id) {
+      <article>
+        <img [src]="avatarPath(participant.avatar)" [alt]="participant.name" />
+        <div class="participant-info">
+          <strong>{{ participant.name }}</strong>
+          <span [class.inactive]="!participant.active">
+            {{ participant.active ? 'Activo' : 'Inactivo' }}
+          </span>
+        </div>
+        <div class="actions">
+          <button type="button" (click)="startDetailsEdit(participant.id)">Editar</button>
+          <button type="button" (click)="startAvatarEdit(participant.id)">Avatar</button>
+          <button type="button" class="danger" (click)="askRemove(participant.id, participant.name)">Quitar</button>
+        </div>
+        @if (editingDetailsId === participant.id) {
+          <form class="editor details-editor" (ngSubmit)="saveDetails(participant.id)">
+            <label>
+              Nombre
+              <input name="editName" [(ngModel)]="editName" />
+            </label>
+            <label>
+              Estado
+              <select name="editActive" [(ngModel)]="editActive">
+                <option [ngValue]="true">Activo</option>
+                <option [ngValue]="false">Inactivo</option>
+              </select>
+            </label>
+            <app-avatar-picker [(selectedAvatar)]="editAvatar" />
+            <div class="editor-actions">
+              <button type="submit">Guardar</button>
+              <button type="button" (click)="cancelDetailsEdit()">Cancelar</button>
+            </div>
+          </form>
+        }
+        @if (editingParticipantId === participant.id) {
+          <div class="editor">
+              <app-avatar-picker
+                [selectedAvatar]="participant.avatar"
+              (selectedAvatarChange)="askAvatarUpdate(participant.id, participant.name, $event)"
+            />
+          </div>
+        }
+      </article>
+    }
+  </div>
+</section>
+
+@if (pendingConfirmation) {
+  <app-confirm-modal
+    eyebrow="Confirmación"
+    [title]="pendingConfirmation.title"
+    [message]="pendingConfirmation.message"
+    [confirmText]="pendingConfirmation.confirmText"
+    [danger]="pendingConfirmation.danger ?? false"
+    [loading]="isConfirming"
+    (confirmed)="confirmPendingAction()"
+    (cancelled)="cancelConfirmation()"
+  />
+}

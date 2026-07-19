@@ -1,0 +1,40 @@
+<div class="picker">
+  <button class="selected" type="button" (click)="open()">
+    @if (selectedMaterial; as material) {
+      <app-item-icon [icon]="material.icon" [alt]="material.name" />
+      <span>{{ material.name }}</span>
+    } @else {
+      <span>Elegir material</span>
+    }
+  </button>
+
+  <div class="search-row">
+    <input
+      type="text"
+      [value]="searchText"
+      (input)="onSearch($any($event.target).value)"
+      (focus)="open()"
+      placeholder="Buscar cualquier item del juego..."
+    />
+    @if (searchText) {
+      <button class="clear" type="button" (click)="clearSearch($event)">×</button>
+    }
+  </div>
+
+  @if (isOpen) {
+    <div class="panel">
+      <p class="hint">
+        {{ searchText ? 'Resultados del catalogo XML' : 'Materiales de la planilla' }}
+      </p>
+      @for (material of visibleMaterials; track material.id) {
+        <button class="option" type="button" (click)="select(material)">
+          <app-item-icon [icon]="material.icon" [alt]="material.name" />
+          <span>{{ material.name }}</span>
+          <small>#{{ material.id }}</small>
+        </button>
+      } @empty {
+        <p class="empty">No encontre items con ese texto.</p>
+      }
+    </div>
+  }
+</div>

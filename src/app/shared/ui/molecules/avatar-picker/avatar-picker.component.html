@@ -1,0 +1,74 @@
+<div class="picker">
+  <button class="preview" type="button" (click)="open()">
+    <img [src]="avatarPath()" alt="Avatar seleccionado" />
+    <span>Cambiar avatar</span>
+  </button>
+</div>
+
+@if (isOpen) {
+  <div class="overlay" (click)="close()">
+    <section class="modal" (click)="$event.stopPropagation()">
+      <header>
+        <div>
+          <p>Avatar</p>
+          <h3>Elegir apariencia</h3>
+        </div>
+        <button class="close" type="button" (click)="close()">Cerrar</button>
+      </header>
+
+      <nav class="race-tabs">
+        @for (race of races; track race) {
+          <button
+            type="button"
+            [class.active]="race === selectedRace"
+            (click)="selectRace(race)"
+          >
+            {{ race }}
+          </button>
+        }
+      </nav>
+
+      @if (warriorAvatars.length > 0) {
+        <section class="avatar-group">
+          <h4>Guerrero</h4>
+          <hr />
+          <div class="grid">
+            @for (avatar of warriorAvatars; track avatar.file) {
+              <button
+                class="avatar-card"
+                type="button"
+                [class.selected]="avatar.file === selectedAvatar"
+                (click)="selectAvatar(avatar.file)"
+              >
+                <img [src]="avatarPath(avatar.file)" [alt]="avatar.race + ' ' + avatar.type" />
+                <strong>{{ avatar.gender }}</strong>
+                <small>{{ avatar.race }} - {{ avatar.type }}</small>
+              </button>
+            }
+          </div>
+        </section>
+      }
+
+      @if (mageAvatars.length > 0) {
+        <section class="avatar-group">
+          <h4>Mago</h4>
+          <hr />
+          <div class="grid">
+            @for (avatar of mageAvatars; track avatar.file) {
+              <button
+                class="avatar-card"
+                type="button"
+                [class.selected]="avatar.file === selectedAvatar"
+                (click)="selectAvatar(avatar.file)"
+              >
+                <img [src]="avatarPath(avatar.file)" [alt]="avatar.race + ' ' + avatar.type" />
+                <strong>{{ avatar.gender }}</strong>
+                <small>{{ avatar.race }} - {{ avatar.type }}</small>
+              </button>
+            }
+          </div>
+        </section>
+      }
+    </section>
+  </div>
+}

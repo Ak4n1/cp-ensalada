@@ -1,0 +1,45 @@
+button {
+  background:
+    linear-gradient(180deg, rgba(201, 255, 90, 0.95), rgba(105, 138, 35, 0.96)),
+    linear-gradient(90deg, rgba(255, 215, 124, 0.36), transparent);
+  border: 0;
+  color: #101704;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  min-height: 46px;
+  outline: none;
+  padding: 12px 20px;
+  position: relative;
+  text-transform: uppercase;
+  transition: filter 160ms ease, transform 120ms ease, box-shadow 160ms ease, color 160ms ease;
+  width: 100%;
+}
+
+button:hover {
+  box-shadow: 0 0 28px rgba(159, 203, 69, 0.42), inset 0 0 18px rgba(0, 0, 0, 0.14);
+  filter: brightness(1.12) saturate(1.12);
+}
+
+button:focus,
+button:focus-visible {
+  box-shadow: 0 0 0 2px rgba(201, 255, 90, 0.18), 0 0 24px rgba(159, 203, 69, 0.22);
+  outline: none;
+}
+
+button:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+button:disabled {
+  cursor: wait;
+  filter: saturate(0.8) brightness(0.9);
+  opacity: 0.78;
+  transform: none;
+}
+
+button.ghost {
+  background: rgba(3, 5, 3, 0.62);
+  border-color: rgba(214, 166, 78, 0.38);
+  color: var(--cp-gold-hot);
+}

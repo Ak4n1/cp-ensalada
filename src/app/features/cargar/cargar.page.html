@@ -1,0 +1,7 @@
+<section class="grid">
+  <app-contribution-form
+    [contributionToEdit]="contributionToEdit"
+    (editFinished)="clearEdit()"
+  />
+  <app-recent-contributions (contributionSelected)="editContribution($event)" />
+</section>

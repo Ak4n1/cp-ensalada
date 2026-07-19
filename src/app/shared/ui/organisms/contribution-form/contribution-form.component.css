@@ -1,0 +1,72 @@
+.card {
+  background: linear-gradient(145deg, rgba(36, 27, 18, 0.98), rgba(16, 13, 10, 0.98));
+  border: 1px solid rgba(216, 162, 74, 0.28);
+  border-radius: 14px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+  display: grid;
+  gap: 16px;
+  overflow: visible;
+  padding: 24px;
+  position: relative;
+  z-index: 3;
+}
+
+.eyebrow {
+  color: #d8a24a;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: var(--cp-font-title);
+  font-size: 34px;
+  margin: 0;
+}
+
+small {
+  color: #bca987;
+  display: block;
+  line-height: 1.45;
+  margin-top: 8px;
+}
+
+label {
+  color: #cdb58d;
+  display: grid;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 8px;
+  letter-spacing: 0.06em;
+  position: relative;
+  text-transform: uppercase;
+}
+
+label:focus-within {
+  z-index: 20;
+}
+
+select,
+input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(216, 162, 74, 0.3);
+  border-radius: 8px;
+  color: #fff0c7;
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+option {
+  background: #16100b;
+}
+
+.cancel-edit {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--cp-bone);
+  cursor: pointer;
+  font-weight: 900;
+  min-height: 42px;
+  text-transform: uppercase;
+}

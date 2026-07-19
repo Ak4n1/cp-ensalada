@@ -1,0 +1,50 @@
+<form class="card" (ngSubmit)="submit()">
+  <div>
+    <p class="eyebrow">Nueva carga</p>
+    <h2>{{ editingContributionId ? 'Corregir aporte' : 'Registrar aporte' }}</h2>
+    <small>
+      Cargá lo que entregó cada personaje para llevar el seguimiento de aportes. Esto no es el
+      stock total de la CP.
+    </small>
+  </div>
+
+  <label>
+    Personaje
+    <app-participant-picker
+      [participants]="data.participants()"
+      [selectedParticipantId]="participantId"
+      (participantSelected)="onParticipantSelected($event)"
+    />
+  </label>
+
+  <label>
+    Material
+    <app-material-picker
+      [featuredMaterials]="data.materials()"
+      [selectedMaterialId]="materialId"
+      (materialSelected)="onMaterialSelected($event)"
+    />
+  </label>
+
+  <label>
+    Cantidad
+    <input name="amount" type="number" min="1" step="1" [(ngModel)]="amount" placeholder="Ej: 333" />
+  </label>
+
+  <app-button type="submit">{{ editingContributionId ? 'Guardar corrección' : 'Cargar aporte' }}</app-button>
+  @if (editingContributionId) {
+    <button class="cancel-edit" type="button" (click)="cancelEdit()">Cancelar edición</button>
+  }
+</form>
+
+@if (confirmation) {
+  <app-confirm-modal
+    eyebrow="Confirmación"
+    [title]="confirmation.title"
+    [message]="confirmation.message"
+    [confirmText]="confirmation.confirmText"
+    [loading]="isSaving"
+    (confirmed)="confirmSubmit()"
+    (cancelled)="cancelConfirmation()"
+  />
+}

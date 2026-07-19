@@ -1,0 +1,49 @@
+<section class="card">
+  <div class="heading">
+    <p class="eyebrow">Correcciones</p>
+    <h2>Últimas cargas</h2>
+    <small>Si alguien se equivocó recién, editá la cantidad o eliminá el aporte desde acá.</small>
+  </div>
+
+  @if (recentContributions().length > 0) {
+    <div class="list">
+      @for (contribution of recentContributions(); track contribution.id) {
+        <article class="row">
+          <div class="material">
+            <app-item-icon [icon]="materialIcon(contribution)" [alt]="materialName(contribution)" />
+            <div>
+              <strong>{{ materialName(contribution) }}</strong>
+              <span>{{ participantName(contribution) }} aportó {{ contribution.amount }}</span>
+              <time>{{ contributionDate(contribution) }}</time>
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" (click)="selectContribution(contribution)">
+              <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+              Editar
+            </button>
+            <button class="danger" type="button" (click)="askDeleteContribution(contribution)">
+              <i class="fa-solid fa-trash" aria-hidden="true"></i>
+              Eliminar
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  } @else {
+    <p class="empty">Todavía no hay cargas para corregir.</p>
+  }
+</section>
+
+@if (contributionToDelete) {
+  <app-confirm-modal
+    eyebrow="Eliminar aporte"
+    title="Confirmar eliminación"
+    [message]="deleteMessage()"
+    confirmText="Eliminar"
+    [danger]="true"
+    [loading]="isDeleting"
+    (confirmed)="confirmDelete()"
+    (cancelled)="cancelDelete()"
+  />
+}

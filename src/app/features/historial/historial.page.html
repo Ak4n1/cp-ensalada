@@ -1,0 +1,46 @@
+<section class="page">
+  <div class="hero">
+    <div>
+      <p>Registro de movimientos</p>
+      <h1>Historial de aportes</h1>
+      <small>
+        Acá ves cada carga individual: quién aportó, qué material entregó, cuánto cargó y cuándo
+        quedó registrado.
+      </small>
+    </div>
+
+    <label>
+      Buscar historial
+      <div class="search-row">
+        <input
+          name="searchText"
+          [(ngModel)]="searchText"
+          placeholder="Ej: VELYNN, Thread, 333..."
+        />
+        @if (searchText) {
+          <button type="button" (click)="clearSearch()">x</button>
+        }
+      </div>
+    </label>
+  </div>
+
+  <div class="timeline">
+    @for (entry of entries; track entry.id) {
+      <article>
+        <div class="stamp">
+          <span>{{ entry.createdLabel }}</span>
+        </div>
+
+        <div class="body">
+          <app-item-icon [icon]="entry.materialIcon" [alt]="entry.materialName" />
+          <div>
+            <h2>{{ entry.participantName }} aportó {{ entry.amount }} {{ entry.materialName }}</h2>
+            <small>#{{ entry.materialId }}</small>
+          </div>
+        </div>
+      </article>
+    } @empty {
+      <p class="empty">No hay cargas que coincidan con esa búsqueda.</p>
+    }
+  </div>
+</section>

@@ -1,0 +1,137 @@
+<section class="page">
+  <div class="search-card">
+    <div class="intro">
+      <p>Base de items</p>
+      <h1>Materiales y crafteo</h1>
+      <small>
+        Primero ves los materiales rápidos que usa la sección Cargar. También podés buscar
+        cualquier item del juego por nombre o ID y abrir su receta para ver la cadena de craft.
+      </small>
+    </div>
+
+    <label>
+      Buscar item
+      <div class="search-row">
+        <input
+          name="searchText"
+          [(ngModel)]="searchText"
+          placeholder="Ej: Steel, Tallum, Recipe, 1880..."
+        />
+        @if (searchText) {
+          <button type="button" (click)="clearSearch()">x</button>
+        }
+      </div>
+    </label>
+    <small>{{ visibleItemsLabel }} Click en un item para ver receta si existe.</small>
+  </div>
+
+  <div class="grid">
+    @for (item of visibleItems; track item.id) {
+      <button class="item-card" type="button" (click)="openRecipe(item)">
+        <app-item-icon [icon]="item.icon" [alt]="item.name" />
+        <strong>{{ item.name }}</strong>
+        <small>#{{ item.id }}</small>
+      </button>
+    } @empty {
+      <p class="empty">No encontre items con ese texto.</p>
+    }
+  </div>
+</section>
+
+@if (selectedItem) {
+  <div class="overlay" (click)="closeRecipe()">
+    <section class="modal" (click)="$event.stopPropagation()">
+      <header>
+        <div class="title">
+          <app-item-icon [icon]="selectedItem.icon" [alt]="selectedItem.name" />
+          <div>
+            <p>Receta de craft</p>
+            <h2>{{ selectedItem.name }}</h2>
+            <small>#{{ selectedItem.id }}</small>
+          </div>
+        </div>
+        <button class="close" type="button" (click)="closeRecipe()">Cerrar</button>
+      </header>
+
+      @if (selectedCraftView; as craftView) {
+          <div class="recipe">
+            @if (selectedRecipes.length > 1) {
+              <div class="recipe-switcher" aria-label="Cambiar receta">
+                @for (recipe of selectedRecipes; track recipe.id) {
+                  <button
+                    type="button"
+                    [class.active]="recipe.id === craftView.recipe.id"
+                    (click)="setActiveRecipe(recipe)"
+                  >
+                    <strong>{{ recipe.successRate }}%</strong>
+                    <span>Lv. {{ recipe.craftLevel }}</span>
+                  </button>
+                }
+              </div>
+            }
+
+            <div class="recipe-meta">
+              <span>Lv. {{ craftView.recipe.craftLevel }}</span>
+              <span>{{ craftView.recipe.type }}</span>
+              <span>{{ craftView.recipe.successRate }}%</span>
+              <span>Produce x{{ craftView.recipe.production.count }}</span>
+            </div>
+
+            <div class="craft-layout">
+              <div class="craft-panel">
+                <h3>Cadena de crafteo</h3>
+
+                <ng-template #craftNode let-node>
+                  <li [class.has-recipe]="node.hasRecipe">
+                    <div class="craft-line">
+                      <app-item-icon [icon]="node.icon" [alt]="node.name" />
+                      <span class="count">{{ node.count }}</span>
+                      <strong>{{ node.name }}</strong>
+                      @if (node.totalCount !== node.count) {
+                        <small>({{ node.totalCount }} total)</small>
+                      }
+                      @if (node.hasRecipe) {
+                        <em>recipe</em>
+                      }
+                    </div>
+
+                    @if (node.children.length > 0) {
+                      <ul>
+                        <ng-container *ngFor="let child of node.children">
+                          <ng-container
+                            *ngTemplateOutlet="craftNode; context: { $implicit: child }"
+                          ></ng-container>
+                        </ng-container>
+                      </ul>
+                    }
+                  </li>
+                </ng-template>
+
+                <ul class="craft-list">
+                  <ng-container *ngFor="let node of craftView.tree">
+                    <ng-container *ngTemplateOutlet="craftNode; context: { $implicit: node }">
+                    </ng-container>
+                  </ng-container>
+                </ul>
+              </div>
+
+              <aside class="totals-panel">
+                <h3>Totals</h3>
+                <ol class="totals-list">
+                  @for (total of craftView.totals; track total.id) {
+                    <li>
+                      <app-item-icon [icon]="total.icon" [alt]="total.name" />
+                      <strong>{{ total.name }}</strong>
+                      <span>{{ total.count }}</span>
+                    </li>
+                  }
+                </ol>
+              </aside>
+            </div>
+          </div>
+      } @else {
+        <p class="no-recipe">Este item no tiene receta de craft en Recipes.xml.</p>
+      }
+    </section>
+  </div>
+}
