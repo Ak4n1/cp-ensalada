@@ -55,8 +55,8 @@ export class MaterialesPage implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const [itemsResponse, recipesResponse] = await Promise.all([
-      fetch('/assets/item-catalog.json'),
-      fetch('/assets/recipe-catalog.json'),
+      fetch('assets/item-catalog.json'),
+      fetch('assets/recipe-catalog.json'),
     ]);
 
     this.items = ((await itemsResponse.json()) as Material[]).map((item) => ({

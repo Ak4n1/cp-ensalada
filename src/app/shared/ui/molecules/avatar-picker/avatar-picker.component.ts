@@ -7,7 +7,7 @@ export interface AvatarOption {
   gender: string;
 }
 
-const AVATAR_BASE_PATH = '/assets/images/app/avatars/Lineage/webp';
+const AVATAR_BASE_PATH = 'assets/images/app/avatars/Lineage/webp';
 
 @Component({
   selector: 'app-avatar-picker',

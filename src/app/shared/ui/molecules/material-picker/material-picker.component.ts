@@ -20,7 +20,7 @@ export class MaterialPickerComponent implements OnInit {
   isOpen = false;
 
   async ngOnInit(): Promise<void> {
-    const response = await fetch('/assets/item-catalog.json');
+    const response = await fetch('assets/item-catalog.json');
     const items = (await response.json()) as Material[];
     this.catalog = items.map((item) => ({
       id: item.id.toString(),

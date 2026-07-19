@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, inject } from '@angular/core';
 import { Participant } from '../../../../core/models/participant.model';
 
-const AVATAR_BASE_PATH = '/assets/images/app/avatars/Lineage/webp';
+const AVATAR_BASE_PATH = 'assets/images/app/avatars/Lineage/webp';
 
 @Component({
   selector: 'app-participant-picker',

@@ -45,7 +45,7 @@ export class ParticipantesPage {
   }
 
   avatarPath(file: string): string {
-    return `/assets/images/app/avatars/Lineage/webp/${file}`;
+    return `assets/images/app/avatars/Lineage/webp/${file}`;
   }
 
   startAvatarEdit(participantId: string): void {

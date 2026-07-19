@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class ItemIconService {
-  private readonly basePath = '/assets/icons_items';
+  private readonly basePath = 'assets/icons_items';
 
   resolve(icon?: string): string {
     const normalized = this.normalize(icon);
